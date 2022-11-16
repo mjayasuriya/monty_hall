@@ -20,7 +20,7 @@ module Players
 
   class InteractiveMHPlayer
     def get_choice(doors)
-      puts "D #{doors}"
+      puts "Doors #{doors}"
       puts "Door 0-#{doors.length-1}? "
       choice = gets
       choice.to_i
@@ -35,10 +35,10 @@ module Players
   end
 end
 
-#require_relative 'game'
-#
+require_relative 'game'
+
 #i = Players::InteractiveMHPlayer.new
 #
-#g = MontyHall.new
+#g = MontyHall.new(3)
 #
 #puts g.play(i)

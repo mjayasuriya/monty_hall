@@ -2,25 +2,24 @@ class MontyHall
   attr_accessor :visible_doors
 
   def initialize(doors=3)
-    @visible_doors = ["*"]*doors
-    @door_cnt = doors
-    @car_idx = rand(doors)
+    @num_doors = doors
+    reset()
   end
 
+  def reset()
+    @doors = ["G"]*@num_doors
+    @doors[rand(@num_doors)] = "C"
+    @visible_doors = ["*"]*@num_doors
+  end
+   
+
   def update_visible(choice)
-    if choice == @car_idx then
-      @visible_doors = ["G"]*@door_cnt
-      other_goat = rand(@door_cnt-1)
-      if other_goat == @car_idx then
-        @visible_doors[-1] = "*"
-      else
-        @visible_doors[other_goat] = "*"
-      end
-    else
-      @visible_doors = ["G"]*@visible_doors.length
-      @visible_doors[@car_idx] = "*"
-    end
-    @visible_doors[choice] = "*"
+    goat_idxs = (0..@doors.length).to_a.select {|i| @doors[i] == "G"}.shuffle
+
+    choice_is_goat = goat_idxs.index(choice)
+    goat_idxs.delete_at(choice_is_goat) if choice_is_goat
+
+    goat_idxs[0..(@doors.length-3)].each {|goat| @visible_doors[goat] = "G"}
   end
 
   def play(player)
@@ -32,7 +31,11 @@ class MontyHall
       choice = (0..@visible_doors.length).select {|i| @visible_doors[i] == "*" and i != choice}[0]
     end
 
-    return choice == @car_idx
+    win = @doors[choice] == "C"
+
+    reset()
+
+    return win
   end
 
 end
