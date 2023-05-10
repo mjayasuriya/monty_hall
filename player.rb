@@ -1,3 +1,4 @@
+#hotfix
 module Players
   class MontyHallPlayer
   
