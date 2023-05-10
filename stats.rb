@@ -1,3 +1,4 @@
+# Change 126
 class Stats
   def initialize(game, player, rounds=1e6.to_i)
     @game = game
