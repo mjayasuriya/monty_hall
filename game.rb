@@ -1,6 +1,6 @@
-class MontyHall
-  attr_accessor :visible_doors
+# test change
 
+class MontyHall
   def initialize(doors=3)
     @num_doors = doors
     reset()
