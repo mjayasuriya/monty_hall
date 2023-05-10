@@ -1,3 +1,4 @@
+# Change 1
 class MontyHall
   attr_accessor :visible_doors
 
