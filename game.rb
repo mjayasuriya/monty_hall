@@ -1,3 +1,4 @@
+#bug-124
 class MontyHall
   attr_accessor :visible_doors
 
